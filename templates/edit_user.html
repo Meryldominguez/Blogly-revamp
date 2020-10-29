@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} 
+Edit {{ user.full_name }}'s Profile
+{% endblock %}
+
+{% block content %}
+  <h1>Edit User {{user.full_name}}</h1>
+<form method="POST">
+  <p>First Name:<input name="first_name" value="{{user.first_name}}"></p>
+  <p>Last Name:<input name="last_name" value="{{user.last_name}}"></p>
+  <p>Photo:<input name="image_url" value="{{user.image_url}}"></p>
+  <button>Save</button>
+</form>
+{% endblock %}

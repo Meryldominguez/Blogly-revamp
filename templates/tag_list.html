@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Tags{% endblock %}
+{% block content %}
+    <h1>Tags</h1>
+        {% if tags %}
+            <ul>
+                {% for tag in tags %}
+                <li> 
+                    <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+                </li>
+                {% endfor%}
+            </ul>
+        {% else %}
+        <h2>There are no Tags yet</h2>
+        {% endif %}
+<form action="/tags/new" method="get">
+    <input type="submit" value="New Tag" id="newtagbtn"/>
+</form>
+
+<form action="/users" method="get">
+    <input type="submit" value="Go back" id="back"/>
+</form>
+{% endblock %}
+
+

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} 
+Edit {{ user.get_full_name() }}'s Post 
+{% endblock %}
+
+{% block content %}
+    <h2>Add Post for {{user.get_full_name()}}</h2>
+<form action="/users/{{user.id}}/posts/new" method="POST">
+  <p>Title:<input name="post_title"></p>
+  <p>Content:<input name="post_content"></p>
+  {% if tags %}
+  <h3>Tags:</h3>
+  <ul>
+    {% for tag of tags %}
+
+    <li>
+      <input type="checkbox" name="{{tag.name}}" id="">
+    <label for="{{tag.name}}">{{tag.name}}</label>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <button>Submit</button>
+</form>
+<form action="/users/{{user.id}}" method="get">
+<input type="submit" value="Go back" id="back"/>
+</form>
+{% endblock %}

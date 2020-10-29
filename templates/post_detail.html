@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} 
+{{ post.author.full_name }}'s Post
+{% endblock %}
+
+{% block content %}
+    <h1>{{post.post_title}}</h1>
+    <p>{{post.post_content}}</p>
+<br>
+
+    <p>
+        By {{ post.author.full_name }} 
+        <br>
+        (Created: {{post.created_at}})
+        <br>    
+        Tags: 
+        {% for tag in post.tags%}
+        <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+        {% endfor %}
+    </p>
+
+<form action="/posts/{{post.id}}/edit" method="GET">
+    <input type="submit" value="Edit post" id="editbtn"/>
+</form>
+<form action="/posts/{{post.id}}/delete" method="POST">
+    <input type="submit" value="Delete Post" id="deletebtn"/>
+</form>
+<form action="/users/{{post.author.id}}" method="GET">
+    <input type="submit" value="See Author page" id="editbtn"/>
+</form>
+<form action="/users" method="GET">
+    <input type="submit" value="Home" id="editbtn"/>
+</form>
+{% endblock %}
+
+

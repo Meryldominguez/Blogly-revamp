@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ user.full_name }}'s Profile
+{% endblock %}
+
+{% block content %}
+    <h1>{{ user.full_name }}</h1>
+    {% if user.image_url %}
+    <img id="profile" src="{{ user.image_url }}">
+    {% else %}
+    <img id="profile" src="https://picsum.photos/200">
+    {% endif %}
+    <div class="postsdiv">
+    
+        </form>
+        {% if user.posts %}
+            <h2>Posts authored:</h2>
+            <ul>
+                {% for post in user.posts %}
+                <li> 
+                    <a href="/posts/{{post.id}}">
+                        {{post.post_title}}
+
+                        {% for tag in post.tags%}
+                        <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+                        {% endfor %}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <h2>This account has no posts</h2>
+        {% endif %}
+        <form action="/users/{{user.id}}/posts/new" method="get">
+            <input type="submit" value="Write new post" id="newpostbtn"/>
+        </form>
+    </div>
+<form action="/users/{{user.id}}/edit" method="get">
+    <input type="submit" value="Edit Profile" id="editbtn"/>
+</form>
+<form action="/users/{{user.id}}/delete" method="post">
+    <input type="submit" value="Delete Profile" id="deletebtn"/>
+</form>
+
+<form action="/users" method="get">
+    <input type="submit" value="Go back" id="back"/>
+</form>
+{% endblock %}
+
+
